@@ -71,8 +71,12 @@ function getAverage(value1, value2) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  const deltaX = x2 - x1;
+  const deltaY = y2 - y1;
+  const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+
+  return distance;
 }
 
 /**
@@ -87,8 +91,9 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  const root = -b / a;
+  return root;
 }
 
 /**
@@ -108,8 +113,17 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const dotProduct = x1 * x2 + y1 * y2;
+
+  const magnitude1 = Math.sqrt(x1 ** 2 + y1 ** 2);
+  const magnitude2 = Math.sqrt(x2 ** 2 + y2 ** 2);
+
+  const cosineTheta = dotProduct / (magnitude1 * magnitude2);
+
+  const angleRadians = Math.acos(cosineTheta);
+
+  return angleRadians;
 }
 
 /**
@@ -125,8 +139,9 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  const lastDigit = value % 10;
+  return lastDigit;
 }
 
 /**
@@ -140,8 +155,9 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  const parsedNumber = parseFloat(value);
+  return parsedNumber;
 }
 
 /**
@@ -157,8 +173,9 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  const diagonal = Math.sqrt(a ** 2 + b ** 2 + c ** 2);
+  return diagonal;
 }
 
 /**
@@ -178,8 +195,11 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const divisor = 10 ** pow;
+  const roundedNumber = Math.round(num / divisor) * divisor;
+
+  return roundedNumber;
 }
 
 /**
@@ -199,8 +219,22 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n <= 1) {
+    return false; // 0 and 1 are not prime numbers
+  }
+
+  let i = 2;
+
+  while (i <= Math.sqrt(n)) {
+    if (n % i === 0) {
+      return false;
+    }
+
+    i += 1;
+  }
+
+  return true;
 }
 
 /**
@@ -218,8 +252,14 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const convertedValue = Number(value);
+
+  if (!Number.isNaN(convertedValue)) {
+    return convertedValue;
+  }
+
+  return def;
 }
 
 /**
@@ -233,8 +273,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -250,8 +290,28 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) {
+    return 0;
+  }
+
+  if (index === 1) {
+    return 1;
+  }
+
+  let a = 0;
+  let b = 1;
+  let result;
+  let i = 2;
+
+  while (i <= index) {
+    result = a + b;
+    a = b;
+    b = result;
+    i += 1;
+  }
+
+  return result;
 }
 
 /**
@@ -265,8 +325,16 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let sum = 0;
+  let i = 1;
+
+  while (i <= n) {
+    sum += i;
+    i += 1;
+  }
+
+  return sum;
 }
 
 /**
@@ -280,8 +348,17 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const numStr = Math.abs(num).toString();
+  let sum = 0;
+  let i = 0;
+
+  while (i < numStr.length) {
+    sum += parseInt(numStr[i], 10);
+    i += 1;
+  }
+
+  return sum;
 }
 
 /**
@@ -295,8 +372,15 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  if (num <= 0) {
+    return false;
+  }
+
+  const binaryRepresentation = num.toString(2);
+  const numberOfOnes = binaryRepresentation.split('1').length - 1;
+
+  return numberOfOnes === 1;
 }
 
 /**
@@ -309,8 +393,8 @@ function isPowerOfTwo(/* num */) {
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
